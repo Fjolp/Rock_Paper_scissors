@@ -11,8 +11,9 @@
 
         let playerChoice;
         let computerChoice;
-        let playerScore;
-        let computerScore;
+        let playerScore=0;
+        let computerScore=0;
+        let i = 0;
 
         function getComputerChoice(){
 
@@ -26,44 +27,41 @@
             }else {
                 computerChoice = "scissors";
             };
-
-            return console.log(computerChoice);
         };
 
-        function playRound(playerChoice, computerChoice) {
+        function playRound() {
 
+            getComputerChoice();
 
-            computerChoice = getComputerChoice();
-
-            if (playerChoice === computerChoice){
+            if (playerChoice == computerChoice){
                 alert("draw");
                 return "tie " + playerScore + " - " + computerScore;
 
-            }else if (playerChoice === "rock" && computerChoice === "paper") {
+            }else if (playerChoice == "rock" && computerChoice == "paper") {
                 alert("you loose, paper beats rock");
                 return "you lost " + playerScore + " - " + ++computerScore;
 
-            }else if (playerChoice === "rock" && computerChoice === "scissors") {
+            }else if (playerChoice == "rock" && computerChoice == "scissors") {
                 alert("you win, rock beats scissors");
                 return "you won " + ++playerScore + " - " + computerScore;
 
-            }else if (playerChoice === "paper" && computerChoice === "scissors") {
+            }else if (playerChoice == "paper" && computerChoice == "scissors") {
                 alert("you loose, scissors beat paper");
                 return "you lost " + playerScore + " - " + ++computerScore;
 
-            }else if (playerChoice === "paper" && computerChoice === "rock") {
+            }else if (playerChoice == "paper" && computerChoice == "rock") {
                 alert("you win, paper beats rock");
                 return "you won " + ++playerScore + " - " + computerScore;
 
-            }else if (playerChoice === "scissors" && computerChoice === "rock") {
+            }else if (playerChoice == "scissors" && computerChoice == "rock") {
                 alert("you loose, rock beats scissors");
                 return "you lost " + playerScore + " - " + ++computerScore;
 
-            }else if (playerChoice === "scissors" && computerChoice === "paper") {
+            }else if (playerChoice == "scissors" && computerChoice == "paper") {
                 alert("you win, scissors beat paper");
                 return "you won " + ++playerScore + " - " + computerScore;
             }
-            console.log(playerChoice);
+            
         }
 
         function onUserInput (){
@@ -71,23 +69,39 @@
             if ((playerChoice.toLowerCase() == "rock")
             ||(playerChoice.toLowerCase() == "paper")
             ||(playerChoice.toLowerCase() == "scissors")) {
-                console.log(playRound(playerChoice, computerChoice));
+                console.log(playRound());
+                
             }else{
                 alert("thats not a valid option");
+                onUserInput();
             }
-            onUserInput();
         }
 
         function game() {
-            playerScore = 0
-            computerScore = 0
-            for (let i = 0; i < 5; i++);{
+            playerScore = 0;
+            computerScore = 0;
+            for (i = 0; i < 6; i++){
                 onUserInput();
             };
+
+            console.log(decideWinner());
+
+            function decideWinner() {
+            if(playerScore === computerScore) {
+                alert(playerScore + " - " + computerScore + "\nTie");
+                return playerScore + " - " + computerScore + "\nTie";
+            }else if (playerScore > computerScore) {
+                alert(playerScore + " - " + computerScore + "\nYou won, gj :D");
+                return playerScore + " - " + computerScore + "\nYou won, gj :D";
+            }else { playerScore < computerScore
+                alert(playerScore + " - " + computerScore + "\nYou lost, better luck next time");
+                return playerScore + " - " + computerScore + "\nYou lost, better luck next time";
+            }
         }
+     }
         
         game();
-
+    
     </script>
 </body>
 </html>
